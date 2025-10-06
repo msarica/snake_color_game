@@ -12,7 +12,10 @@
     "puzzle",
     "game",
     "typescript",
-    "vite"
+    "vite",
+    "pwa",
+    "mobile",
+    "offline"
   ],
   "author": "",
   "license": "ISC",
@@ -20,6 +23,7 @@
     "@types/node": "^24.6.2",
     "terser": "^5.44.0",
     "typescript": "^5.9.3",
-    "vite": "^7.1.9"
+    "vite": "^7.1.9",
+    "vite-plugin-pwa": "^1.0.3"
   }
 }

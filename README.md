@@ -25,6 +25,13 @@ A mobile-optimized puzzle game built with TypeScript and Vite. Players must sele
 - ✅ No text selection or zoom interference
 - ✅ Smooth animations and transitions
 
+### PWA Features
+- ✅ Install as standalone app on mobile/desktop
+- ✅ Offline functionality with service worker
+- ✅ App icons for home screen
+- ✅ Fast loading with caching
+- ✅ Native app-like experience
+
 ### Progress System
 - ✅ Level unlocking system
 - ✅ Progress persistence with localStorage
@@ -41,6 +48,8 @@ A mobile-optimized puzzle game built with TypeScript and Vite. Players must sele
 
 - **TypeScript** - Type-safe development
 - **Vite** - Fast development server and build tool
+- **Vite PWA Plugin** - Progressive Web App functionality
+- **Workbox** - Service worker for offline support
 - **Vanilla JavaScript** - No framework dependencies
 - **CSS3** - Modern styling with flexbox and grid
 - **localStorage** - Progress persistence
@@ -206,6 +215,27 @@ This project is licensed under the ISC License.
 4. Test thoroughly
 5. Submit a pull request
 
+## 📱 PWA Installation
+
+### On Mobile (iOS/Android)
+1. Open the game in Safari (iOS) or Chrome (Android)
+2. Tap the "Share" button (iOS) or menu (Android)
+3. Select "Add to Home Screen"
+4. The app will appear on your home screen like a native app
+
+### On Desktop (Chrome/Edge)
+1. Open the game in your browser
+2. Look for the install icon in the address bar
+3. Click "Install" to add it as a desktop app
+4. Launch it anytime from your apps menu
+
+### PWA Benefits
+- **Offline Play**: Continue playing without internet connection
+- **Fast Loading**: Assets are cached for instant startup
+- **Native Experience**: Full-screen, no browser UI
+- **Easy Access**: One tap from your home screen
+- **Auto-updates**: Always get the latest version
+
 ## 🎯 Future Enhancements
 
 - [ ] Sound effects and music
@@ -214,7 +244,7 @@ This project is licensed under the ISC License.
 - [ ] Achievements system
 - [ ] Custom level editor
 - [ ] Multiplayer support
-- [ ] Progressive Web App (PWA) features
+- [ ] Push notifications for daily challenges
 
 ---
 

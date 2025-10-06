@@ -1,5 +1,8 @@
 import { GameState, Level } from '../types/game.js';
 
+// Declare the global version variable injected by Vite
+declare const __APP_VERSION__: string;
+
 export class Header {
   private container: HTMLElement;
 
@@ -12,7 +15,7 @@ export class Header {
     this.container.innerHTML = `
       <div class="header">
         <div class="header-content">
-          <h1 class="game-title">Snake Color Puzzle</h1>
+          <h1 class="game-title">Snake Color Puzzle <span class="version">v${__APP_VERSION__}</span></h1>
           <div class="level-info">
             <button class="level-number level-trigger" id="open-level-dialog" aria-label="Change level">Level <span id="current-level">1</span> ⌄</button>
             <button class="control-button restart-button" id="restart-button" aria-label="Restart level">🔄 Restart</button>
