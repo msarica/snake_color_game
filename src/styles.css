@@ -1,0 +1,491 @@
+/* Mobile-first responsive design */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Game Container */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 10px;
+  gap: 15px;
+}
+
+/* Header */
+.header {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.game-title {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.level-info {
+  display: flex;
+  gap: 15px;
+  color: white;
+  font-weight: 500;
+}
+
+/* Level Selector */
+.level-selector {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.level-selector h3 {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.level-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  gap: 8px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.level-button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.level-button.unlocked {
+  background: #3498db;
+  color: white;
+}
+
+.level-button.unlocked:hover {
+  background: #2980b9;
+  transform: scale(1.05);
+}
+
+.level-button.locked {
+  background: #95a5a6;
+  color: #7f8c8d;
+  cursor: not-allowed;
+}
+
+.level-button.current {
+  background: #e74c3c;
+  box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+}
+
+/* Level Dialog */
+.level-trigger {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.level-trigger:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.level-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+.level-dialog {
+  width: min(560px, 92vw);
+  height: 90vh;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.level-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.level-dialog-header h3 {
+  color: white;
+  font-size: 18px;
+}
+
+.level-dialog-close {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.level-dialog-body {
+  padding: 14px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+}
+
+/* Ensure level list fills dialog body in modal, not capped to 120px */
+.level-dialog .level-buttons {
+  flex: 1;
+  max-height: none;
+  overflow: auto;
+}
+
+.level-button.completed:not(.current) {
+  background: #27ae60;
+}
+
+/* Pattern Display */
+.pattern-display {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.pattern-display h3 {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.pattern-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.target-pattern,
+.selected-pattern {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pattern-color-block {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.pattern-color-block.selected {
+  border-color: #f1c40f;
+  box-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+}
+
+.pattern-color-block.empty {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+}
+
+.pattern-indicator {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateX(-50%) scale(1.1);
+  }
+}
+
+/* Game Grid */
+.game-grid {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.grid-container {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.game-block {
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  min-height: 40px;
+  min-width: 40px;
+}
+
+.game-block:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.game-block.selected {
+  border-color: #f1c40f;
+  box-shadow: 0 0 15px rgba(241, 196, 15, 0.6);
+  transform: scale(1.1);
+}
+
+.game-block:active {
+  transform: scale(0.95);
+}
+
+/* Game Controls */
+.game-controls {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.controls-content {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.control-button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.restart-button {
+  background: #e74c3c;
+  color: white;
+}
+
+.restart-button:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+}
+
+.check-button {
+  background: #27ae60;
+  color: white;
+}
+
+.check-button:hover:not(:disabled) {
+  background: #229954;
+  transform: translateY(-2px);
+}
+
+.check-button:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.next-button {
+  background: #3498db;
+  color: white;
+}
+
+.next-button:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .game-container {
+    padding: 8px;
+    gap: 10px;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .game-title {
+    font-size: 20px;
+  }
+  
+  .level-info {
+    font-size: 14px;
+  }
+  
+  .level-buttons {
+    grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+  }
+  
+  .level-button {
+    width: 45px;
+    height: 45px;
+    font-size: 14px;
+  }
+  
+  .pattern-color-block {
+    width: 35px;
+    height: 35px;
+    font-size: 12px;
+  }
+  
+  .game-block {
+    min-height: 35px;
+    min-width: 35px;
+    font-size: 10px;
+  }
+  
+  .control-button {
+    padding: 10px 16px;
+    font-size: 14px;
+    min-width: 100px;
+  }
+}
+
+@media (min-width: 768px) {
+  .game-container {
+    margin: 0 auto;
+  }
+  
+  .grid-container {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .game-block {
+    min-height: 50px;
+    min-width: 50px;
+    font-size: 14px;
+  }
+}
+
+/* Touch optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .game-block:hover {
+    transform: none;
+  }
+  
+  .level-button.unlocked:hover {
+    transform: none;
+  }
+  
+  .control-button:hover {
+    transform: none;
+  }
+  
+  .game-block:active {
+    transform: scale(0.9);
+  }
+  
+  .level-button.unlocked:active {
+    transform: scale(0.95);
+  }
+  
+  .control-button:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Animation for level completion */
+@keyframes levelComplete {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.level-complete {
+  animation: levelComplete 0.5s ease-in-out;
+}
