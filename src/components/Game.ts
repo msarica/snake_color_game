@@ -1,11 +1,11 @@
 import { GameStateManager } from '../state/gameState.js';
 import { GameState, Level } from '../types/game.js';
 import { isPatternComplete } from '../utils/gameLogic.js';
-import { Header } from './Header.js';
-import { GameGrid } from './GameGrid.js';
-import { PatternDisplay } from './PatternDisplay.js';
-import { LevelDialog } from './LevelDialog.js';
-import { SettingsDialog } from './SettingsDialog.js';
+import { Header } from './Header';
+import { GameGrid } from './GameGrid';
+import { PatternDisplay } from './PatternDisplay';
+import { LevelDialog } from './LevelDialog';
+import { SettingsDialog } from './SettingsDialog';
 
 export class Game {
     private gameStateManager: GameStateManager;

@@ -4,7 +4,7 @@ const DEFAULT_SETTINGS: Settings = {
     preventMistakes: false
 };
 
-const STORAGE_KEY = 'color-game-settings';
+const STORAGE_KEY = 'snake-color-puzzle-settings';
 
 export function saveSettings(settings: Settings): void {
     try {

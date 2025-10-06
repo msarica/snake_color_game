@@ -38,6 +38,6 @@ export const COLOR_LIGHT_MAP: Record<Color, string> = {
 };
 
 export const STORAGE_KEYS = {
-    GAME_STATE: 'color-game-state',
-    HIGHEST_LEVEL: 'color-game-highest-level'
+    GAME_STATE: 'snake-color-puzzle-state',
+    HIGHEST_LEVEL: 'snake-color-puzzle-highest-level'
 } as const;

@@ -154,7 +154,7 @@ export class SettingsDialog {
         return this.settings;
     }
 
-    public update(state: GameState): void {
+    public update(_state: GameState): void {
         // Settings dialog doesn't need to update based on game state
         // but we keep this method for consistency with other components
     }

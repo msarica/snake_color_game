@@ -1,4 +1,4 @@
-# Color Puzzle Game 🎮
+# Snake Color Puzzle 🎮
 
 A mobile-optimized puzzle game built with TypeScript and Vite. Players must select colored blocks in a specific pattern sequence to complete levels.
 
@@ -94,7 +94,7 @@ src/
 1. **Clone the repository**
    ```bash
    git clone <repository-url>
-   cd color-game
+   cd snake-color-puzzle
    ```
 
 2. **Install dependencies**
@@ -218,4 +218,4 @@ This project is licensed under the ISC License.
 
 ---
 
-**Enjoy playing the Color Puzzle Game!** 🎉
+**Enjoy playing the Snake Color Puzzle!** 🎉

@@ -12,7 +12,7 @@ export class Header {
     this.container.innerHTML = `
       <div class="header">
         <div class="header-content">
-          <h1 class="game-title">Color Puzzle</h1>
+          <h1 class="game-title">Snake Color Puzzle</h1>
           <div class="level-info">
             <button class="level-number level-trigger" id="open-level-dialog" aria-label="Change level">Level <span id="current-level">1</span> ⌄</button>
             <button class="control-button restart-button" id="restart-button" aria-label="Restart level">🔄 Restart</button>
@@ -23,7 +23,7 @@ export class Header {
     `;
   }
 
-  public update(state: GameState, level: Level): void {
+  public update(_state: GameState, level: Level): void {
     const levelElement = this.container.querySelector('#current-level');
 
     if (levelElement) {

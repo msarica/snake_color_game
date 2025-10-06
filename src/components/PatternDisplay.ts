@@ -25,7 +25,7 @@ export class PatternDisplay {
     `;
   }
 
-  public update(targetPattern: Color[], selectedPattern: Color[], gameState?: GameState, selectedBlocks?: Block[]): void {
+  public update(targetPattern: Color[], selectedPattern: Color[], _gameState?: GameState, selectedBlocks?: Block[]): void {
     const targetContainer = this.container.querySelector('#target-pattern');
     const settings = loadSettings();
 
@@ -61,7 +61,7 @@ export class PatternDisplay {
     }
   }
 
-  private shouldShowIndicator(patternIndex: number, selectedPattern: Color[], targetPattern: Color[], selectedBlocks?: Block[]): boolean {
+  private shouldShowIndicator(patternIndex: number, _selectedPattern: Color[], targetPattern: Color[], selectedBlocks?: Block[]): boolean {
     if (selectedBlocks && selectedBlocks.length === 0) {
       // Show indicator on first color if no blocks selected yet
       return patternIndex === 0;
