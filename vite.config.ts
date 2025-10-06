@@ -6,7 +6,7 @@ import { readFileSync } from 'fs'
 const packageJson = JSON.parse(readFileSync('./package.json', 'utf-8'))
 
 export default defineConfig({
-    base: './',
+    base: '/snake_color_puzzle/',
     define: {
         __APP_VERSION__: JSON.stringify(packageJson.version)
     },
@@ -22,8 +22,8 @@ export default defineConfig({
                 background_color: '#667eea',
                 display: 'standalone',
                 orientation: 'portrait',
-                scope: '/',
-                start_url: '/',
+                scope: '/snake_color_puzzle/',
+                start_url: '/snake_color_puzzle/',
                 icons: [
                     {
                         src: 'pwa-192x192.png',
