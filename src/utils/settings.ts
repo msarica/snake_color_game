@@ -1,7 +1,7 @@
 import { Settings } from '../types/game.js';
 
 const DEFAULT_SETTINGS: Settings = {
-    preventMistakes: false
+    preventMistakes: true
 };
 
 const STORAGE_KEY = 'snake-color-puzzle-settings';

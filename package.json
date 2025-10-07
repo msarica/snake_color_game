@@ -1,6 +1,6 @@
 {
   "name": "snake-color-puzzle",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A puzzle game with colored blocks and pattern matching",
   "type": "module",
   "scripts": {
