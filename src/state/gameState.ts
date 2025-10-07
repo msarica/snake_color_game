@@ -34,6 +34,9 @@ export class GameStateManager {
         if (savedHighestLevel > this.state.highestUnlockedLevel) {
             this.state.highestUnlockedLevel = savedHighestLevel;
         }
+
+        // Ensure currentLevel is set to the highest unlocked level (latest level player can play)
+        this.state.currentLevel = this.state.highestUnlockedLevel;
     }
 
     public getState(): GameState {
