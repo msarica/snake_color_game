@@ -67,6 +67,7 @@ body {
   padding: 2px 6px;
   border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-right: 8px;
 }
 
 .level-info {
@@ -444,6 +445,7 @@ body {
     font-size: 14px;
     min-width: 100px;
   }
+  
 }
 
 @media (min-width: 768px) {
@@ -490,40 +492,35 @@ body {
   }
 }
 
-/* Info Button */
-.info-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: rgba(52, 152, 219, 0.9);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  cursor: pointer;
-  display: flex;
+/* Small Info Button */
+.info-button-small {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  z-index: 100;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(52, 152, 219, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 6px;
+  vertical-align: middle;
 }
 
-.info-button:hover {
-  background: rgba(41, 128, 185, 0.95);
+.info-button-small:hover {
+  background: rgba(41, 128, 185, 0.9);
   transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-.info-button:active {
+.info-button-small:active {
   transform: scale(0.95);
 }
 
-.info-button svg {
-  width: 24px;
-  height: 24px;
+.info-button-small svg {
+  width: 16px;
+  height: 16px;
 }
 
 /* Animation for level completion */

@@ -41,18 +41,13 @@ export class Game {
         <div class="instructions-dialog-container"></div>
         <div class="pattern-display-container"></div>
         <div class="game-grid-container"></div>
-        <button class="info-button" id="info-button" aria-label="View instructions" title="How to Play">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-            <path d="M12 16v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <path d="M12 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </button>
       </div>
     `;
 
         // Initialize components
-        this.header = new Header(this.container.querySelector('.game-header')!);
+        this.header = new Header(this.container.querySelector('.game-header')!, () => {
+            this.instructionsDialog.open();
+        });
         this.levelDialog = new LevelDialog(
             this.container.querySelector('.level-dialog-container')!,
             this.gameStateManager
@@ -76,7 +71,6 @@ export class Game {
             const openBtn = this.container.querySelector('#open-level-dialog');
             const restartBtn = this.container.querySelector('#restart-button');
             const settingsBtn = this.container.querySelector('#open-settings-dialog');
-            const infoBtn = this.container.querySelector('#info-button');
             if (openBtn && !openBtn.getAttribute('data-bound')) {
                 openBtn.setAttribute('data-bound', 'true');
                 openBtn.addEventListener('click', () => {
@@ -93,12 +87,6 @@ export class Game {
                 settingsBtn.setAttribute('data-bound', 'true');
                 settingsBtn.addEventListener('click', () => {
                     this.settingsDialog.open();
-                });
-            }
-            if (infoBtn && !infoBtn.getAttribute('data-bound')) {
-                infoBtn.setAttribute('data-bound', 'true');
-                infoBtn.addEventListener('click', () => {
-                    this.instructionsDialog.open();
                 });
             }
         };
