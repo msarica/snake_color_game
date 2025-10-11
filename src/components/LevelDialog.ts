@@ -82,8 +82,8 @@ export class LevelDialog {
             button.disabled = isLocked;
 
             if (!isLocked) {
-                button.addEventListener('click', () => {
-                    this.gameStateManager.loadLevel(i);
+                button.addEventListener('click', async () => {
+                    await this.gameStateManager.loadLevel(i);
                     this.close();
                 });
             }

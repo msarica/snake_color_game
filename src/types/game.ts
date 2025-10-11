@@ -29,6 +29,7 @@ export interface GameState {
     selectedBlocks: Block[];
     selectedPattern: Color[];
     isGameComplete: boolean;
+    isLoading: boolean;
 }
 
 export interface GameConfig {

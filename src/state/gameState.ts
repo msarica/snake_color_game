@@ -19,7 +19,8 @@ export class GameStateManager {
             highestUnlockedLevel: 1,
             selectedBlocks: [],
             selectedPattern: [],
-            isGameComplete: false
+            isGameComplete: false,
+            isLoading: false
         };
     }
 
@@ -47,17 +48,30 @@ export class GameStateManager {
         return this.currentLevel;
     }
 
-    public loadLevel(levelId: number): void {
+    public async loadLevel(levelId: number): Promise<void> {
         if (levelId > this.state.highestUnlockedLevel) {
             console.warn(`Level ${levelId} is not unlocked yet`);
             return;
         }
 
-        this.currentLevel = createLevel(levelId);
+        // Set loading state
+        this.state.isLoading = true;
         this.state.currentLevel = levelId;
         this.state.selectedBlocks = [];
         this.state.selectedPattern = [];
         this.notifyListeners();
+
+        try {
+            // Generate level asynchronously
+            this.currentLevel = await createLevel(levelId);
+        } catch (error) {
+            console.error('Failed to generate level:', error);
+            // Handle error - maybe show error message or fallback
+        } finally {
+            // Clear loading state
+            this.state.isLoading = false;
+            this.notifyListeners();
+        }
     }
 
     public dispatch(action: GameAction): void {

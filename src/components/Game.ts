@@ -7,6 +7,7 @@ import { PatternDisplay } from './PatternDisplay';
 import { LevelDialog } from './LevelDialog';
 import { SettingsDialog } from './SettingsDialog';
 import { InstructionsDialog } from './InstructionsDialog';
+import { LoadingScreen } from './LoadingScreen';
 
 export class Game {
     private gameStateManager: GameStateManager;
@@ -17,6 +18,7 @@ export class Game {
     private instructionsDialog!: InstructionsDialog;
     private patternDisplay!: PatternDisplay;
     private gameGrid!: GameGrid;
+    private loadingScreen!: LoadingScreen;
     private currentState: GameState | null = null;
     private currentLevel: Level | null = null;
 
@@ -41,6 +43,7 @@ export class Game {
         <div class="instructions-dialog-container"></div>
         <div class="pattern-display-container"></div>
         <div class="game-grid-container"></div>
+        <div class="loading-screen-container"></div>
       </div>
     `;
 
@@ -56,6 +59,7 @@ export class Game {
         this.instructionsDialog = new InstructionsDialog(this.container.querySelector('.instructions-dialog-container')!);
         this.patternDisplay = new PatternDisplay(this.container.querySelector('.pattern-display-container')!);
         this.gameGrid = new GameGrid(this.container.querySelector('.game-grid-container')!, this.gameStateManager);
+        this.loadingScreen = new LoadingScreen(this.container.querySelector('.loading-screen-container')!);
     }
 
     private setupEventListeners(): void {
@@ -93,13 +97,23 @@ export class Game {
         attach();
     }
 
-    private loadInitialLevel(): void {
+    private async loadInitialLevel(): Promise<void> {
         const state = this.gameStateManager.getState();
-        this.gameStateManager.loadLevel(state.currentLevel);
+        await this.gameStateManager.loadLevel(state.currentLevel);
     }
 
     private updateUI(): void {
-        if (!this.currentState || !this.currentLevel) return;
+        if (!this.currentState) return;
+
+        // Handle loading state
+        if (this.currentState.isLoading) {
+            this.loadingScreen.show();
+            return;
+        } else {
+            this.loadingScreen.hide();
+        }
+
+        if (!this.currentLevel) return;
 
         // Update header
         this.header.update(this.currentState, this.currentLevel);
@@ -186,9 +200,9 @@ export class Game {
         cursor: pointer;
       `;
 
-        nextBtn.addEventListener('click', () => {
+        nextBtn.addEventListener('click', async () => {
             const state = this.gameStateManager.getState();
-            this.gameStateManager.loadLevel(state.currentLevel + 1);
+            await this.gameStateManager.loadLevel(state.currentLevel + 1);
             const existing = document.querySelector('#level-complete-overlay');
             if (existing && existing.parentElement) {
                 existing.parentElement.removeChild(existing);

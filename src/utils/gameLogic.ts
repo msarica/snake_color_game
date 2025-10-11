@@ -75,7 +75,10 @@ export function isPatternComplete(selectedPattern: Color[], targetPattern: Color
 }
 
 
-export function createLevel(levelId: number): Level {
+export async function createLevel(levelId: number): Promise<Level> {
+    // Add a small delay to simulate level generation time
+    await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 1000));
+
     const gridSizeIndex = Math.min(
         Math.floor((levelId - 1) / 5),
         GAME_CONFIG.gridSizes.length - 1
@@ -217,11 +220,14 @@ function isValidPatternSequence(blockSequence: Block[], targetPattern: Color[]):
  * Creates a guaranteed solvable level by first generating a pattern,
  * then placing blocks in a way that ensures all blocks can be selected in the correct pattern order
  */
-export function createGuaranteedSolvableLevel(
+export async function createGuaranteedSolvableLevel(
     levelId: number,
     gridSize: { width: number; height: number },
     availableColors: Color[]
-): Level {
+): Promise<Level> {
+    // Add a small delay to simulate level generation time
+    await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 1000));
+
     // New guaranteed approach mirrors createLevel: generate grid first, random Hamiltonian path, derive pattern
     const blocks = generateRandomGridBlocks(gridSize, availableColors);
     const pathPositions = generateRandomHamiltonianPath(gridSize);
